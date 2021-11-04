@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  s3-local:
+    container_name: "S3-LOCAL"
+    image: localstack/localstack
+    network_mode: bridge
+    ports:
+      - "4566-4599:4566-4599"
+    environment:
+      - SERVICES=s3
+      - DEBUG=1
+      - EDGE_PORT=4566
+      - DATA_DIR=/tmp/localstack/data
+    volumes:
+      - './.localstack:/tmp/localstack'
+      - "/var/run/docker.sock:/var/run/docker.sock"
