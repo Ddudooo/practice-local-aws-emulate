@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  s3-mock:
+    container_name: "S3-LOCAL"
+    image: adobe/s3mock
+    ports:
+      - "9090:9090"
+      - "9191:9191"
+    environment:
+      - initialBuckets=local-bucket
+      - root=/tmp/buckets
+    volumes:
+      - './.s3-mock:/tmp'
